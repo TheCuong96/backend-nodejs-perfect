@@ -1,8 +1,10 @@
 const express = require("express");
 const path = require("path");
-
+require("dotenv").config();
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+// const hostname = process.env.HOSTNAME;
+
 app.set("view engine", "ejs"); // thằng này để nó xác định rằng các view engine, còn gọi cách khác là các code html mà node có thể đọc được là phải thông qua file có đuôi là ejs
 app.set("views", path.join(__dirname, "views")); // thằng này để xác định rằng những view UI ta viết bằng html sẽ được đọc trong thư mục(folder) là views bất kể nó nằm ở đâu
 
