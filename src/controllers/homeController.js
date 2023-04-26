@@ -55,6 +55,13 @@ let postSubmitEditUser = async (req, res) => {
     );
     return res.redirect("/");
 };
+
+let postDeleteUser = async (req, res) => {
+    let userId = req.body.userId;
+    await connection.execute("delete from Users where id = ?", [userId]);
+    return res.redirect("/");
+};
+
 module.exports = {
     getHomepage,
     getSamplepage,
@@ -62,4 +69,5 @@ module.exports = {
     getCreatePage,
     getEditPage,
     postSubmitEditUser,
+    postDeleteUser,
 };

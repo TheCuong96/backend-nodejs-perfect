@@ -8,9 +8,10 @@ const {
     getCreatePage,
     getEditPage,
     postSubmitEditUser,
+    postDeleteUser,
 } = require("../controllers/homeController");
 //dưới đây là khai báo route
-
+routers.post("/delete-user", postDeleteUser);
 routers.post("/submit-edit", postSubmitEditUser);
 routers.get("/edit-user/:id", getEditPage);
 routers.get("/create", getCreatePage);
