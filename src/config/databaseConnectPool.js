@@ -1,6 +1,6 @@
-const mysql = require("mysql2");
+const mysql = require("mysql2/promise");
 require("dotenv").config();
-
+// const mysql22 = require("mysql2/promise");
 // createPool có hỗ trợ cache cho ta, để tránh người dùng reload page liên tục và server phải trả lại dữ liệu liên tục, nên sử dụng createPool để có thể dùng pool.execute để nó lưu trữ data đệm lại khi bị gọi nhiều lần mà cùng 1 data giống nhau
 // nói ngắn gọn là nó tái sử dụng các connection trước đó rồi, nên sẽ ko connection một lần nữa nếu data trùng nhau
 // thằng pool còn là 1 trung gian giúp quá trình connect database của ta không bị sập khi có quá nhiều connect cùng 1 lúc, nó sẽ chờ đợi và xử lý từng connect 1 đến khi xử lý hết connect, thì khi làm như vậy, quá trình connection của ta sẽ không bị sập mà chỉ lâu hơn 1 chút

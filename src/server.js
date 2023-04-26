@@ -12,11 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 configViewEngine(app);
-const connection = require("./config/databaseConnectPool");
-
-connection.query("SELECT * FROM Users u", function (err, results, fiedls) {
-    console.log("results", results);
-});
 app.use("/", routers);
 
 app.listen(port, () => {
