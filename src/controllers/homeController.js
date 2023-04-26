@@ -35,9 +35,14 @@ let postCreateUser = async (req, res) => {
 let getCreatePage = async (req, res) => {
     return res.render("create.ejs");
 };
+
+let getEditPage = async (req, res) => {
+    return res.render("edit.ejs");
+};
 module.exports = {
     getHomepage,
     getSamplepage,
     postCreateUser,
     getCreatePage,
+    getEditPage,
 };

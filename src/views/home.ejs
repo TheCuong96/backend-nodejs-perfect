@@ -38,11 +38,21 @@
                         <td><%= dataUser[i].email %></td>
                         <td><%= dataUser[i].city %></td>
                         <td class="group-btn">
-                            <button type="button">Detail</button>
-
-                            <button type="submit">Edit</button>
-
-                            <button type="submit">Delete</button>
+                            <form
+                                action="/edit-user/<%= dataUser[i].id %>"
+                                method="GET"
+                            >
+                                <button type="submit">Edit</button>
+                            </form>
+                            <form action="/delete-user" method="POST">
+                                <input
+                                    type="text"
+                                    hidden
+                                    value="<%= dataUser[i].id %>"
+                                    name="userId"
+                                />
+                                <button type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     <% } %>
