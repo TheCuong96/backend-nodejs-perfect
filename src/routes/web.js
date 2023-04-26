@@ -7,9 +7,11 @@ const {
     postCreateUser,
     getCreatePage,
     getEditPage,
+    postSubmitEditUser,
 } = require("../controllers/homeController");
 //dưới đây là khai báo route
 
+routers.post("/submit-edit", postSubmitEditUser);
 routers.get("/edit-user/:id", getEditPage);
 routers.get("/create", getCreatePage);
 routers.get("/sample", getSamplepage);

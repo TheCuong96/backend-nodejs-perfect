@@ -46,10 +46,20 @@ let getEditPage = async (req, res) => {
     console.log("user", user[0]);
     return res.render("edit.ejs", { dataUser: user[0] });
 };
+let postSubmitEditUser = async (req, res) => {
+    // gửi data lên server để cập nhật lại data
+    let { name, email, city, id } = req.body;
+    await connection.execute(
+        "update Users set name = ? , email = ? , city= ? where id = ?",
+        [name, email, city, id]
+    );
+    return res.redirect("/");
+};
 module.exports = {
     getHomepage,
     getSamplepage,
     postCreateUser,
     getCreatePage,
     getEditPage,
+    postSubmitEditUser,
 };
