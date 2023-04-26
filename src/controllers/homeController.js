@@ -37,7 +37,14 @@ let getCreatePage = async (req, res) => {
 };
 
 let getEditPage = async (req, res) => {
-    return res.render("edit.ejs");
+    // lấy data cần edit từ server bằng id
+    let id = req.params.id;
+    console.log("id", id);
+    let [user] = await connection.execute("Select * from Users where id = ?", [
+        id,
+    ]);
+    console.log("user", user[0]);
+    return res.render("edit.ejs", { dataUser: user[0] });
 };
 module.exports = {
     getHomepage,
