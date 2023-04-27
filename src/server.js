@@ -11,10 +11,17 @@ const port = process.env.PORT || 3000;
 //2 thằng dưới đây dùng để compile code lại code js mà ta có thể hiểu và sử dụng được ở node mỗi khi có data được bắn qua lại giữa server và client
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-connection();
+
 configViewEngine(app);
 app.use("/", routers);
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
+(async () => {
+    try {
+        await connection();
+        app.listen(port, () => {
+            console.log(`backend zore listening on port ${port}`);
+        });
+    } catch (error) {
+        console.log("error connect to DB", error);
+    }
+})();
