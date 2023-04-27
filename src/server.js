@@ -1,10 +1,9 @@
 const express = require("express");
 const routers = require("./routes/web");
-
+const routerAPI = require("./routes/api");
 const connection = require("./config/databaseConnectMongodb");
 const configViewEngine = require("./config/viewEngine");
 require("dotenv").config();
-
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,6 +15,8 @@ app.use(express.json());
 
 configViewEngine(app);
 app.use("/", routers);
+
+app.use("/v1/api/", routerAPI);
 
 (async () => {
     try {
