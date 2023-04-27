@@ -15,7 +15,18 @@ let postCreateUserAPI = async (req, res) => {
         data: results,
     });
 };
+
+let putEditUserAPI = async (req, res) => {
+    // gửi data lên server để cập nhật lại data
+    let results = await User.updateOne({ _id: req.body.id }, { ...req.body });
+    return res.status(200).json({
+        errorCode: 0,
+        data: results,
+    });
+};
+
 module.exports = {
     getUserAPI,
     postCreateUserAPI,
+    putEditUserAPI,
 };
