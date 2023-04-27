@@ -33,8 +33,8 @@ let postSubmitEditUser = async (req, res) => {
 };
 
 let postDeleteUser = async (req, res) => {
-    let userId = req.body.userId;
-    await connection.execute("delete from Users where id = ?", [userId]);
+    let result = await User.deleteOne({ _id: req.body.userId });
+    console.log("result delete", result);
     return res.redirect("/");
 };
 
