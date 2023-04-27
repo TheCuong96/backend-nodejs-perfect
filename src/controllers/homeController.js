@@ -1,9 +1,10 @@
 const connection = require("../config/databaseConnectPool");
 
-const { getAllUsers } = require("../services/CRUDServices");
+// const { getAllUsers } = require("../services/CRUDServices");
+const User = require("../models/user");
 
 let getHomepage = async (req, res) => {
-    let results = await getAllUsers();
+    let results = [];
     return res.render("home.ejs", { dataUser: results });
 };
 let getSamplepage = async (req, res) => {
@@ -24,11 +25,12 @@ let getSamplepage = async (req, res) => {
 
 let postCreateUser = async (req, res) => {
     let { name, email, city } = req.body;
-    let [results, fields] = await connection.execute(
-        `INSERT INTO Users (email, name, city) VALUES (?, ?, ?)`,
-        [email, name, city]
-    );
-    console.log("results", results);
+    // let [results, fields] = await connection.execute(
+    //     `INSERT INTO Users (email, name, city) VALUES (?, ?, ?)`,
+    //     [email, name, city]
+    // );
+    console.log("xxxxxxx", { name, email, city });
+    await User.create({ name, email, city });
     return res.redirect("/");
 };
 
