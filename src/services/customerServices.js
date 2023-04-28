@@ -19,4 +19,17 @@ const createListCustomerService = async (customerData) => {
     }
 };
 
-module.exports = { createCustomerService, createListCustomerService };
+const getListCustomerService = async () => {
+    try {
+        return await Customer.find();
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+};
+
+module.exports = {
+    createCustomerService,
+    createListCustomerService,
+    getListCustomerService,
+};

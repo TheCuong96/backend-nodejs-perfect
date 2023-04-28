@@ -10,13 +10,15 @@ const {
 } = require("../controllers/apiControllers");
 
 const {
-    postCreateCustomer,
-    postCreateCustomerxx,
-} = require("../controllers/customerControllers");
+    postCreateCustomerAPI,
+    postCreateListCustomerAPI,
+    getListCustomerAPI,
+} = require("../controllers/apiCustomerControllers");
 
 //dưới đây là khai báo route
-routerAPI.post("/customers-many", postCreateCustomerxx);
-routerAPI.post("/customers", postCreateCustomer);
+routerAPI.get("/customers-many", getListCustomerAPI);
+routerAPI.post("/customers-many", postCreateListCustomerAPI);
+routerAPI.post("/customers", postCreateCustomerAPI);
 
 routerAPI.post("/file", postFileAPI);
 routerAPI.get("/users", getUserAPI);

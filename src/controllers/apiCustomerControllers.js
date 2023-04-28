@@ -2,10 +2,11 @@ const uploadSingleFiles = require("../services/fileServives");
 const {
     createCustomerService,
     createListCustomerService,
+    getListCustomerService,
 } = require("../services/customerServices");
 
 module.exports = {
-    postCreateCustomer: async (req, res) => {
+    postCreateCustomerAPI: async (req, res) => {
         let { name, address, phone, email, description } = req.body;
         let imageUrl = "";
         if (!req.files || Object.keys(req.files).length === 0) {
@@ -31,7 +32,7 @@ module.exports = {
             data: customer,
         });
     },
-    postCreateCustomerxx: async (req, res) => {
+    postCreateListCustomerAPI: async (req, res) => {
         const { customers } = req.body;
         let ListDataCustomers = await createListCustomerService(customers);
         if (ListDataCustomers) {
@@ -43,6 +44,21 @@ module.exports = {
             return res.status(200).json({
                 EC: -1,
                 data: ListDataCustomers,
+            });
+        }
+    },
+    getListCustomerAPI: async (req, res) => {
+        let results = await getListCustomerService();
+        console.log("results", results);
+        if (results) {
+            return res.status(200).json({
+                errorCode: 0,
+                data: results,
+            });
+        } else {
+            return res.status(200).json({
+                EC: -1,
+                data: results,
             });
         }
     },
