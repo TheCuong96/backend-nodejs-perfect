@@ -8,7 +8,12 @@ const {
     deleteUserAPI,
     postFileAPI,
 } = require("../controllers/apiControllers");
+
+const { postCreateCustomer } = require("../controllers/customerControllers");
+
 //dưới đây là khai báo route
+
+routerAPI.post("/customers", postCreateCustomer);
 
 routerAPI.post("/file", postFileAPI);
 routerAPI.get("/users", getUserAPI);
