@@ -6,9 +6,11 @@ const {
     postCreateUserAPI,
     putEditUserAPI,
     deleteUserAPI,
+    postFileAPI,
 } = require("../controllers/apiControllers");
 //dưới đây là khai báo route
 
+routerAPI.post("/file", postFileAPI);
 routerAPI.get("/users", getUserAPI);
 routerAPI.post("/users", postCreateUserAPI);
 routerAPI.put("/users", putEditUserAPI);
