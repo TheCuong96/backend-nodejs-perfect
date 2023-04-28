@@ -39,8 +39,11 @@ let postFileAPI = async (req, res) => {
     if (!req.files || Object.keys(req.files).length === 0) {
         return res.status(400).send("no files ware uploaded.");
     }
-    console.log("req.files.image", req.files.image);
-    let result = await uploadSingleFIle(req.files.image);
+    let fileAll = req.files.image;
+    if (!Array.isArray(fileAll)) {
+        fileAll = [fileAll];
+    }
+    let result = await uploadSingleFIle(fileAll);
     console.log("result", result);
     return res.send("ok single");
 };
