@@ -1,5 +1,8 @@
 const uploadSingleFiles = require("../services/fileServives");
-const { createCustomerService } = require("../services/customerServices");
+const {
+    createCustomerService,
+    createListCustomerService,
+} = require("../services/customerServices");
 
 module.exports = {
     postCreateCustomer: async (req, res) => {
@@ -27,5 +30,20 @@ module.exports = {
             EC: 0,
             data: customer,
         });
+    },
+    postCreateCustomerxx: async (req, res) => {
+        const { customers } = req.body;
+        let ListDataCustomers = await createListCustomerService(customers);
+        if (ListDataCustomers) {
+            return res.status(200).json({
+                EC: 0,
+                data: ListDataCustomers,
+            });
+        } else {
+            return res.status(200).json({
+                EC: -1,
+                data: ListDataCustomers,
+            });
+        }
     },
 };

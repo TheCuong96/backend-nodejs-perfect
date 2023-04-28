@@ -9,10 +9,13 @@ const {
     postFileAPI,
 } = require("../controllers/apiControllers");
 
-const { postCreateCustomer } = require("../controllers/customerControllers");
+const {
+    postCreateCustomer,
+    postCreateCustomerxx,
+} = require("../controllers/customerControllers");
 
 //dưới đây là khai báo route
-
+routerAPI.post("/customers-many", postCreateCustomerxx);
 routerAPI.post("/customers", postCreateCustomer);
 
 routerAPI.post("/file", postFileAPI);

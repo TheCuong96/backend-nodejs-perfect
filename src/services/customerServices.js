@@ -10,4 +10,13 @@ const createCustomerService = async (customerData) => {
     }
 };
 
-module.exports = { createCustomerService };
+const createListCustomerService = async (customerData) => {
+    try {
+        return await Customer.insertMany(customerData);
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+};
+
+module.exports = { createCustomerService, createListCustomerService };
