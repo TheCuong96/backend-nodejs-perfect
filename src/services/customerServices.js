@@ -28,8 +28,21 @@ const getListCustomerService = async () => {
     }
 };
 
+const updateCustomerService = async (dataUpdate) => {
+    try {
+        return await Customer.updateOne(
+            { _id: dataUpdate.id },
+            { ...dataUpdate }
+        );
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+};
+
 module.exports = {
     createCustomerService,
     createListCustomerService,
     getListCustomerService,
+    updateCustomerService,
 };

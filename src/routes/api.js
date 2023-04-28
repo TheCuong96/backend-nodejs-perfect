@@ -13,9 +13,11 @@ const {
     postCreateCustomerAPI,
     postCreateListCustomerAPI,
     getListCustomerAPI,
+    updateCustomerAPI,
 } = require("../controllers/apiCustomerControllers");
 
 //dưới đây là khai báo route
+routerAPI.put("/customers", updateCustomerAPI);
 routerAPI.get("/customers-many", getListCustomerAPI);
 routerAPI.post("/customers-many", postCreateListCustomerAPI);
 routerAPI.post("/customers", postCreateCustomerAPI);
