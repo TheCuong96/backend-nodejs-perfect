@@ -15,9 +15,11 @@ const {
     getListCustomerAPI,
     updateCustomerAPI,
     deleteCustomerAPI,
+    deleteManyCustomerAPI,
 } = require("../controllers/apiCustomerControllers");
 
 //dưới đây là khai báo route
+routerAPI.delete("/customers-many", deleteManyCustomerAPI);
 routerAPI.delete("/customers", deleteCustomerAPI);
 routerAPI.put("/customers", updateCustomerAPI);
 routerAPI.get("/customers-many", getListCustomerAPI);

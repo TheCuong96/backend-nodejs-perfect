@@ -50,10 +50,21 @@ const deleteCustomerService = async (id) => {
     }
 };
 
+const deleteManyCustomerService = async (ids) => {
+    console.log("ids", ids);
+    try {
+        return await Customer.delete({ _id: { $in: ids } }); // delete là phương thức của mongoose-delete, ta phải dùng nó thì mới xóa mềm được, còn dùng của mongoose thì nó sẽ xóa thẳng vào data và mất luôn, đây là cách xóa nhiều data dựa theo id của data
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+};
+
 module.exports = {
     createCustomerService,
     createListCustomerService,
     getListCustomerService,
     updateCustomerService,
     deleteCustomerService,
+    deleteManyCustomerService,
 };
