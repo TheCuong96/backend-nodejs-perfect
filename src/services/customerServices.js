@@ -1,4 +1,5 @@
 const Customer = require("../models/customer");
+const aqp = require("api-query-params");
 
 const createCustomerService = async (customerData) => {
     console.log("customerData", customerData);
@@ -24,19 +25,26 @@ const getListCustomerService = async (limit, page, findKey) => {
         if (limit && page) {
             let offset = (page - 1) * limit;
             if (findKey) {
-                const filter = Object.fromEntries(
-                    Object.entries(findKey).map(([key, value]) => [
-                        key,
-                        { $regex: ".*" + value + ".*" },
-                    ])
-                );
-                return await Customer.find({
-                    // name: { $regex: ".*" + name + ".*" }, //đây là cách find data theo giá trị của key name, lưu ý là nếu ko có offset và litmit thì nó không ko tìm được name data vì ko có limit & page thì sẽ không chạy vô đây
-                    ...filter,
-                })
+                const { filter } = aqp(findKey);
+                return await Customer.find(filter) // xử lý theo framework
                     .skip(offset)
                     .limit(limit)
                     .exec();
+
+                // const filter = Object.fromEntries(
+                //     Object.entries(findKey).map(([key, value]) => [
+                //         key,
+                //         { $regex: ".*" + value + ".*" },
+                //     ])
+                // );
+                // return await Customer.find({
+                //     // đây là cách tìm &&, nghĩa là phải đủ hết các điều kiện đưa ra
+                //     // name: { $regex: ".*" + name + ".*" }, //đây là cách find data theo giá trị của key name, lưu ý là nếu ko có offset và litmit thì nó không ko tìm được name data vì ko có limit & page thì sẽ không chạy vô đây
+                //     ...filter,
+                // })
+                //     .skip(offset)
+                //     .limit(limit)
+                //     .exec();
             } else {
                 return await Customer.find({}).skip(offset).limit(limit).exec();
             }
