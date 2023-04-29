@@ -4,6 +4,7 @@ const {
     createListCustomerService,
     getListCustomerService,
     updateCustomerService,
+    deleteCustomerService,
 } = require("../services/customerServices");
 
 module.exports = {
@@ -65,6 +66,20 @@ module.exports = {
     },
     updateCustomerAPI: async (req, res) => {
         let results = await updateCustomerService(req.body);
+        if (results) {
+            return res.status(200).json({
+                errorCode: 0,
+                data: results,
+            });
+        } else {
+            return res.status(200).json({
+                EC: -1,
+                data: results,
+            });
+        }
+    },
+    deleteCustomerAPI: async (req, res) => {
+        let results = await deleteCustomerService(req.body.id);
         if (results) {
             return res.status(200).json({
                 errorCode: 0,

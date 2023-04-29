@@ -40,9 +40,20 @@ const updateCustomerService = async (dataUpdate) => {
     }
 };
 
+const deleteCustomerService = async (id) => {
+    console.log("id", id);
+    try {
+        return await Customer.deleteById(id); // deleteById là phương thức của mongoose-delete, ta phải dùng nó thì mới xóa mềm được, còn dùng của mongoose thì nó sẽ xóa thẳng vào data và mất luôn
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+};
+
 module.exports = {
     createCustomerService,
     createListCustomerService,
     getListCustomerService,
     updateCustomerService,
+    deleteCustomerService,
 };

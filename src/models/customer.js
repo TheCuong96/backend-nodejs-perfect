@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongooseDelete = require("mongoose-delete");
 
 const customerSchema = new mongoose.Schema(
     {
@@ -16,5 +17,11 @@ const customerSchema = new mongoose.Schema(
         timestamps: true, // thằng này được nâng cấp từ phiên bản mới hơn rồi, nó sẽ đại diện cho 2 trường createdAt và updateAt tạo sẵn ra cho ta
     }
 );
+
+customerSchema.plugin(mongooseDelete, {
+    // đây là cách sử dụng xóa mềm, xóa mềm là xóa ở phía client, nhưng ở server thì chưa xóa
+    deletedAt: true, // đây là để nó gắn thêm thời gian xóa mềm cho data
+    overrideMethods: "all", // đây là để nó overide lại data, để không lấy ra những data đã bị xóa mềm ra mỗi khi ta thấy all data hoặc 1 vài data nào đó bị trùng điều kiện với data đã xóa
+});
 
 module.exports = mongoose.model("Customer", customerSchema);
