@@ -19,6 +19,28 @@ const {
 } = require("../controllers/apiCustomerControllers");
 
 //dưới đây là khai báo route
+
+// cách viết api để đọc query-params
+// params thì ta phải xác định key trước
+// query thì không cần xác định trươc,1 điều này giúp ta có thể truyền data tùy biến dễ dàng hơn
+// http://localhost:8081/v1/api/read-params/cuong/hcm
+routerAPI.get("/read-params/:name/:address", (req, res) => {
+    console.log("req.params", req.params);
+    return res.status(200).json({
+        // => "data": { "name": "cuong", "address": "hcm"}
+        data: req.params,
+    });
+});
+
+//http://localhost:8081/v1/api/read-query?name=cuong&email=thecuong1896@gmail.com
+routerAPI.get("/read-query", (req, res) => {
+    console.log("req.query", req.query);
+    return res.status(200).json({
+        // => "data": { "name": "cuong", "email": "thecuong1896@gmail.com"}
+        data: req.query,
+    });
+});
+
 routerAPI.delete("/customers-many", deleteManyCustomerAPI);
 routerAPI.delete("/customers", deleteCustomerAPI);
 routerAPI.put("/customers", updateCustomerAPI);
