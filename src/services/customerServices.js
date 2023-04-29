@@ -19,15 +19,20 @@ const createListCustomerService = async (customerData) => {
     }
 };
 
-const getListCustomerService = async (limit, page, name) => {
-    console.log("name", name);
+const getListCustomerService = async (limit, page, findKey) => {
     try {
         if (limit && page) {
             let offset = (page - 1) * limit;
-
-            if (name) {
+            if (findKey) {
+                const filter = Object.fromEntries(
+                    Object.entries(findKey).map(([key, value]) => [
+                        key,
+                        { $regex: ".*" + value + ".*" },
+                    ])
+                );
                 return await Customer.find({
-                    name: { $regex: ".*" + name + ".*" }, //đây là cách find data theo giá trị của key name, lưu ý là nếu ko có offset và litmit thì nó không ko tìm được name data vì ko có limit & page thì sẽ không chạy vô đây
+                    // name: { $regex: ".*" + name + ".*" }, //đây là cách find data theo giá trị của key name, lưu ý là nếu ko có offset và litmit thì nó không ko tìm được name data vì ko có limit & page thì sẽ không chạy vô đây
+                    ...filter,
                 })
                     .skip(offset)
                     .limit(limit)
