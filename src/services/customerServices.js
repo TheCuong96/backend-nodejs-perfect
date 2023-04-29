@@ -19,9 +19,14 @@ const createListCustomerService = async (customerData) => {
     }
 };
 
-const getListCustomerService = async () => {
+const getListCustomerService = async (limit, page) => {
     try {
-        return await Customer.find();
+        if (limit && page) {
+            let offset = (page - 1) * limit;
+            return await Customer.find({}).skip(offset).limit(limit).exec();
+        } else {
+            return await Customer.find();
+        }
     } catch (error) {
         console.log("error", error);
         return null;

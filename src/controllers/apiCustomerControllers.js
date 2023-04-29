@@ -51,7 +51,8 @@ module.exports = {
         }
     },
     getListCustomerAPI: async (req, res) => {
-        let results = await getListCustomerService();
+        const { limit, page } = req.query;
+        let results = await getListCustomerService(limit, page);
         console.log("results", results);
         if (results) {
             return res.status(200).json({
