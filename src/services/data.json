@@ -1,0 +1,13 @@
+{
+    "type": "EMPTY-PROJECT",
+    "name": "test project 1",
+    "startDate": "24/12/2022",
+    "endDate": "25/12/2023",
+    "description": "just a test project",
+    "customerInfor": {
+        "name": "eric",
+        "phone": "0123456789",
+        "email": "hoidanit@gmail.com"
+    },
+    "leader": { "name": "aka", "email": "eric@gmail.com" }
+}

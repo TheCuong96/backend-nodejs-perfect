@@ -18,8 +18,12 @@ const {
     deleteManyCustomerAPI,
 } = require("../controllers/apiCustomerControllers");
 
-//dưới đây là khai báo route
+const {
+    postCreateProjectAPI,
+} = require("../controllers/apiProjectControllers");
 
+//dưới đây là khai báo route
+routerAPI.post("/project", postCreateProjectAPI);
 // cách viết api để đọc query-params
 // params thì ta phải xác định key trước
 // query thì không cần xác định trươc,1 điều này giúp ta có thể truyền data tùy biến dễ dàng hơn
