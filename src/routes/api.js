@@ -21,9 +21,13 @@ const {
 const {
     postCreateProjectAPI,
     getAllProjectAPI,
+    updateProjectAPI,
+    deleteProjectAPI,
 } = require("../controllers/apiProjectControllers");
 
 //dưới đây là khai báo route
+routerAPI.delete("/project", deleteProjectAPI);
+routerAPI.put("/project", updateProjectAPI);
 routerAPI.get("/project", getAllProjectAPI);
 routerAPI.post("/project", postCreateProjectAPI);
 // cách viết api để đọc query-params

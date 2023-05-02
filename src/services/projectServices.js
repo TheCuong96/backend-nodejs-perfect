@@ -45,7 +45,30 @@ const getProject = async (queryString) => {
     }
 };
 
+const updateProjectService = async (dataUpdate) => {
+    try {
+        return await Project.updateOne(
+            { _id: dataUpdate.id },
+            { ...dataUpdate }
+        );
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+};
+
+const deleteProjectService = async (id) => {
+    console.log("id", id);
+    try {
+        return await Project.deleteById(id); // deleteById là phương thức của mongoose-delete, ta phải dùng nó thì mới xóa mềm được, còn dùng của mongoose thì nó sẽ xóa thẳng vào data và mất luôn
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+};
 module.exports = {
     createProjectService,
     getProject,
+    updateProjectService,
+    deleteProjectService,
 };

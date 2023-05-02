@@ -1,6 +1,8 @@
 const {
     createProjectService,
     getProject,
+    updateProjectService,
+    deleteProjectService,
 } = require("../services/projectServices");
 
 module.exports = {
@@ -20,5 +22,33 @@ module.exports = {
             EC: 0,
             data: project,
         });
+    },
+    updateProjectAPI: async (req, res) => {
+        let results = await updateProjectService(req.body);
+        if (results) {
+            return res.status(200).json({
+                errorCode: 0,
+                data: results,
+            });
+        } else {
+            return res.status(200).json({
+                EC: -1,
+                data: results,
+            });
+        }
+    },
+    deleteProjectAPI: async (req, res) => {
+        let results = await deleteProjectService(req.body.id);
+        if (results) {
+            return res.status(200).json({
+                errorCode: 0,
+                data: results,
+            });
+        } else {
+            return res.status(200).json({
+                EC: -1,
+                data: results,
+            });
+        }
     },
 };
