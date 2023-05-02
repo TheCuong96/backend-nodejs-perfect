@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const mongoose_delete = require('mongoose-delete');
+const mongoose = require("mongoose");
+const mongoose_delete = require("mongoose-delete");
 
 const userSchema = new mongoose.Schema({
     name: String,
@@ -19,14 +19,14 @@ const taskSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true
+            required: true,
         },
         description: String,
         status: String,
         startDate: String,
         endDate: String,
         usersInfo: userSchema,
-        projectInfo: projectSchema
+        projectInfo: projectSchema,
     },
     {
         timestamps: true, // createdAt, updatedAt
@@ -34,7 +34,7 @@ const taskSchema = new mongoose.Schema(
 );
 
 // Override all methods
-taskSchema.plugin(mongoose_delete, { overrideMethods: 'all' });
-const Task = mongoose.model('Task', taskSchema);
+taskSchema.plugin(mongoose_delete, { overrideMethods: "all" });
+const Task = mongoose.model("tasks", taskSchema);
 
 module.exports = Task;

@@ -33,12 +33,13 @@ const createProjectService = async (data) => {
 
 const getProject = async (queryString) => {
     const page = queryString.page;
-    const { filter, limit } = aqp(queryString);
+    const { filter, limit, population } = aqp(queryString);
+    console.log("queryString.populate", queryString.populate);
     delete filter.page;
     try {
         let offset = (page - 1) * limit;
         return await Project.find(filter)
-            .populate(queryString.populate)
+            .populate(population)
             .skip(offset)
             .limit(limit)
             .exec();
