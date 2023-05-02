@@ -25,6 +25,13 @@ const {
     deleteProjectAPI,
 } = require("../controllers/apiProjectControllers");
 
+const {
+    postCreateTaskAPI,
+    getAllTaskAPI,
+    updateTaskAPI,
+    deleteTaskAPI,
+} = require("../controllers/apiTaskControllers");
+
 //dưới đây là khai báo route
 routerAPI.delete("/project", deleteProjectAPI);
 routerAPI.put("/project", updateProjectAPI);
@@ -63,4 +70,9 @@ routerAPI.get("/users", getUserAPI);
 routerAPI.post("/users", postCreateUserAPI);
 routerAPI.put("/users", putEditUserAPI);
 routerAPI.delete("/users", deleteUserAPI);
+
+routerAPI.post("/task", postCreateTaskAPI);
+routerAPI.get("/task", getAllTaskAPI);
+routerAPI.put("/task", updateTaskAPI);
+routerAPI.delete("/task", deleteTaskAPI);
 module.exports = routerAPI;
