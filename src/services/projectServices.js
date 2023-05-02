@@ -1,4 +1,5 @@
 const Project = require("../models/project");
+const aqp = require("api-query-params");
 
 const createProjectService = async (data) => {
     try {
@@ -16,6 +17,24 @@ const createProjectService = async (data) => {
     }
 };
 
+const getProject = async (queryString) => {
+    const page = queryString.page;
+    const { filter, limit } = aqp(queryString);
+    delete filter.page;
+    try {
+        let offset = (page - 1) * limit;
+        return await Project.find(filter)
+            .populate(queryString.populate)
+            .skip(offset)
+            .limit(limit)
+            .exec();
+    } catch (error) {
+        console.log("error", error);
+        return null;
+    }
+};
+
 module.exports = {
     createProjectService,
+    getProject,
 };

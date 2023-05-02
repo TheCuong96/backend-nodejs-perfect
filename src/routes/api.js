@@ -20,9 +20,11 @@ const {
 
 const {
     postCreateProjectAPI,
+    getAllProjectAPI,
 } = require("../controllers/apiProjectControllers");
 
 //dưới đây là khai báo route
+routerAPI.get("/project", getAllProjectAPI);
 routerAPI.post("/project", postCreateProjectAPI);
 // cách viết api để đọc query-params
 // params thì ta phải xác định key trước
